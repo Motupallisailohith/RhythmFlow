@@ -1,78 +1,63 @@
 # RhythmFlow
 
-A data pipeline with Kafka, Spark Streaming, dbt, Docker, Airflow, Terraform, GCP and much more!
+A comprehensive data pipeline showcasing real-time and batch processing with Kafka, Spark Streaming, dbt, Docker, Airflow, Terraform, and Google Cloud Platform.
 
 ## Description
 
 ### Objective
 
-The project will stream events generated from a fake music streaming service (like Spotify) and create a data pipeline that consumes the real-time data. The data coming in would be similar to an event of a user listening to a song, navigating on the website, authenticating. The data would be processed in real-time and stored to the data lake periodically (every two minutes). The hourly batch job will then consume this data, apply transformations, and create the desired tables for our dashboard to generate analytics. We will try to analyze metrics like popular songs, active users, user demographics etc.
+RhythmFlow is designed to simulate a music streaming service (like Spotify) by generating and processing real-time user event data. This data, including song listens, website navigation, and user authentication, is consumed by a robust data pipeline. Real-time processing is performed, with data periodically stored in a data lake (every two minutes). Subsequently, an hourly batch job transforms this data to create analytics-ready tables for a dashboard. The project aims to derive insights into metrics such as popular songs, active users, and user demographics.
 
 ### Dataset
 
-[Eventsim](https://github.com/Interana/eventsim) is a program that generates event data to replicate page requests for a fake music web site. The results look like real use data, but are totally fake. The docker image is borrowed from [viirya's fork](https://github.com/viirya/eventsim) of it, as the original project has gone without maintenance for a few years now.
-
-Eventsim uses song data from [Million Songs Dataset](http://millionsongdataset.com) to generate events. I have used a [subset](http://millionsongdataset.com/pages/getting-dataset/#subset) of 10000 songs.
+The project utilizes [Eventsim](https://github.com/Interana/eventsim), a program that generates realistic, albeit fake, event data for a music streaming website. The Docker image for Eventsim is sourced from [viirya's maintained fork](https://github.com/viirya/eventsim). Eventsim leverages a [subset of 10,000 songs](http://millionsongdataset.com/pages/getting-dataset/#subset) from the [Million Songs Dataset](http://millionsongdataset.com) to simulate user interactions.
 
 ### Tools & Technologies
 
-- Cloud - [**Google Cloud Platform**](https://cloud.google.com)
-- Infrastructure as Code software - [**Terraform**](https://www.terraform.io)
-- Containerization - [**Docker**](https://www.docker.com), [**Docker Compose**](https://docs.docker.com/compose/)
-- Stream Processing - [**Kafka**](https://kafka.apache.org), [**Spark Streaming**](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
-- Orchestration - [**Airflow**](https://airflow.apache.org)
-- Transformation - [**dbt**](https://www.getdbt.com)
-- Data Lake - [**Google Cloud Storage**](https://cloud.google.com/storage)
-- Data Warehouse - [**BigQuery**](https://cloud.google.com/bigquery)
-- Data Visualization - [**Data Studio**](https://datastudio.google.com/overview)
-- Language - [**Python**](https://www.python.org)
+* **Cloud Platform:** [Google Cloud Platform (GCP)](https://cloud.google.com)
+* **Infrastructure as Code:** [Terraform](https://www.terraform.io)
+* **Containerization:** [Docker](https://www.docker.com), [Docker Compose](https://docs.docker.com/compose/)
+* **Stream Processing:** [Apache Kafka](https://kafka.apache.org), [Apache Spark Streaming](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
+* **Orchestration:** [Apache Airflow](https://airflow.apache.org)
+* **Data Transformation:** [dbt (data build tool)](https://www.getdbt.com)
+* **Data Lake:** [Google Cloud Storage (GCS)](https://cloud.google.com/storage)
+* **Data Warehouse:** [Google BigQuery](https://cloud.google.com/bigquery)
+* **Data Visualization:** [Looker Studio (formerly Data Studio)](https://datastudio.google.com/overview)
+* **Programming Language:** [Python](https://www.python.org)
 
 ### Architecture
 
-![rhythmflow-architecture](images/RhythmFlow-Architecture.jpg)
+![RhythmFlow Architecture]((https://github.com/Motupallisailohith/RhythmFlow/blob/main/RhythmFlow.png))
+*Figure 1: High-level architectural overview of the RhythmFlow data pipeline.*
 
 ### Final Result
 
-![dashboard](images/dashboard.png)
+![Dashboard Example](https://github.com/Motupallisailohith/RhythmFlow/blob/main/images/RhythFlow_Dashboard.png)
+*Figure 2: Example dashboard visualizing processed music streaming data.*
+
 ## Setup
 
-**WARNING: You will be charged for all the infra setup. You can avail 300$ in credit by creating a new account on GCP.**
-### Pre-requisites
+**WARNING:** Running this project will incur charges on your Google Cloud Platform account. New GCP accounts may be eligible for $300 in free credits.
 
-If you already have a Google Cloud account and a working terraform setup, you can skip the pre-requisite steps.
+### Prerequisites
 
-- Google Cloud Platform. 
-  - [GCP Account and Access Setup](setup/gcp.md)
-  - [gcloud alternate installation method - Windows](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md#google-cloud-sdk)
-- Terraform
-  - [Setup Terraform](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md#terraform)
+To set up and run RhythmFlow, ensure you have the following in place:
 
-
-### Get Going!
-
-A video walkthrough of how I run my project - [RhythmFlow YouTube Video](https://youtu.be/vzoYhI8KTlY)
-
-- Procure infra on GCP with Terraform - [Setup](setup/terraform.md)
-- (Extra) SSH into your VMs, Forward Ports - [Setup](setup/ssh.md)
-- Setup Kafka Compute Instance and start sending messages from Eventsim - [Setup](setup/kafka.md)
-- Setup Spark Cluster for stream processing - [Setup](setup/spark.md)
-- Setup Airflow on Compute Instance to trigger the hourly data pipeline - [Setup](setup/airflow.md)
+* **Google Cloud Platform Account:**
+    * [GCP Account and Access Setup](setup/gcp.md)
+    * [gcloud CLI alternate installation method - Windows](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md#google-cloud-sdk)
+* **Terraform:**
+    * [Terraform Setup Guide](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md#terraform)
 
 
-### Debug
+### Debugging
 
-If you run into issues, see if you find something in this debug [guide](setup/debug.md).
-### How can I make this better?!
-A lot can still be done :).
-- Choose managed Infra
-  - Cloud Composer for Airflow
-  - Confluent Cloud for Kafka
-- Create your own VPC network
-- Build dimensions and facts incrementally instead of full refresh
-- Write data quality tests
-- Create dimensional models for additional business processes
-- Include CI/CD
-- Add more visualizations
+If you encounter any issues during setup or operation, refer to the [debug guide](setup/debug.md).
 
-### Special Mentions
-I'd like to thank the [DataTalks.Club](https://datatalks.club) for offering this Data Engineering course for completely free. All the things I learnt there, enabled me to come up with this project. If you want to upskill on Data Engineering technologies, please check out the [course](https://github.com/DataTalksClub/data-engineering-zoomcamp). :)
+### Future Enhancements
+
+There are many opportunities to enhance this project:
+
+* **Managed Infrastructure:**
+    * Utilize Cloud Composer for Airflow orchestration.
+    * Integrate with Confluent
