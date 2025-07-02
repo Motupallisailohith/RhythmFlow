@@ -1,0 +1,6 @@
+[cite_start]apache-airflow-providers-google [cite: 1]
+pyarrow
+pandas
+sqlalchemy
+psycopg2-binary
+dbt-bigquery==1.0.
