@@ -27,7 +27,7 @@ The project utilizes [Eventsim](https://github.com/Interana/eventsim), a program
 
 ### Architecture
 
-![RhythmFlow Architecture]((https://github.com/Motupallisailohith/RhythmFlow/blob/main/RhythmFlow.png))
+![RhythmFlow Architecture](https://github.com/Motupallisailohith/RhythmFlow/blob/main/RhythmFlow.png)
 *Figure 1: High-level architectural overview of the RhythmFlow data pipeline.*
 
 ### Final Result
